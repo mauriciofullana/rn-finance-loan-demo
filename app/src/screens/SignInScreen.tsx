@@ -7,10 +7,9 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from 'react-native';
-import { AntDesign, Feather, Ionicons } from '@expo/vector-icons';
-import * as Animatable from 'react-native-animatable';
+import { AntDesign } from '@expo/vector-icons';
+import { FloatingLabelInput } from 'react-native-floating-label-input';
 
-import FloatingTitleTextInput from '../components/FloatingTitleTextInput';
 import { Colors } from '../styles';
 
 const SignInScreen: FunctionComponent = () => {
@@ -30,39 +29,24 @@ const SignInScreen: FunctionComponent = () => {
 			</View>
 			<View style={styles.formContainer}>
 				<Text style={styles.formTitle}>Sign In</Text>
-				<FloatingTitleTextInput
+				<FloatingLabelInput
+					currencyDivider="."
+					label="Username"
 					value={userName}
-					onChangeValue={setUserName}
-					placeHolderText="User Name"
-					errorMessage={''}
-				>
-					{userName.length > 0 ? (
-						<Animatable.View animation="bounceIn">
-							<Feather
-								style={styles.inputIcon}
-								name="check-circle"
-								color={Colors.green}
-								size={19}
-							/>
-						</Animatable.View>
-					) : null}
-				</FloatingTitleTextInput>
-				<FloatingTitleTextInput
+					blurOnSubmit={false}
+					maxLength={20}
+					onChangeText={(value) => setUserName(value)}
+				/>
+				<FloatingLabelInput
+					currencyDivider="."
+					label="Password"
 					value={password}
-					onChangeValue={setPassword}
-					placeHolderText="Password"
-					errorMessage={''}
-					secureTextEntry={true}
-				>
-					<TouchableOpacity onPress={() => {}}>
-						<Ionicons
-							style={styles.inputIcon}
-							name="md-eye"
-							color={Colors.lightWarmGray}
-							size={20}
-						/>
-					</TouchableOpacity>
-				</FloatingTitleTextInput>
+					blurOnSubmit={false}
+					maxLength={20}
+					isPassword={true}
+					showPasswordImageStyles={{ tintColor: Colors.lightWarmGray }}
+					onChangeText={(value) => setPassword(value)}
+				/>
 				<View style={styles.formActions}>
 					<TouchableOpacity style={{ flex: 1 }} onPress={() => {}}>
 						<Text style={styles.formActionsText}>Forgot Password?</Text>
