@@ -69,10 +69,12 @@ export default SignInScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingHorizontal: 25,
+		paddingHorizontal: 20,
+		backgroundColor: '#fff',
 	},
 	logoImgContainer: {
-		flex: 1,
+		flex: 0.5,
+		paddingBottom: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
