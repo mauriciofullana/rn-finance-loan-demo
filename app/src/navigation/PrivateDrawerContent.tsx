@@ -16,20 +16,50 @@ import {
 } from 'react-native-paper';
 import { Colors } from '../styles';
 
-// import { AuthContext } from '../components/context';
+import { AuthContext } from '../context/AuthContext';
 
-export function PublicDrawerContent(props: any) {
-	// const { signOut, toggleTheme } = React.useContext(AuthContext);
+export function PrivateDrawerContent(props: any) {
+	const { signOut, toggleTheme } = React.useContext(AuthContext);
 	const paperTheme = useTheme();
 
 	return (
 		<View style={{ flex: 1 }}>
 			<DrawerContentScrollView {...props}>
+				<View style={styles.drawerContent}>
+					<View style={styles.userInfoSection}>
+						<View
+							style={{ flexDirection: 'row', marginTop: 15, marginBottom: 10 }}
+						>
+							<Avatar.Image
+								source={{
+									uri:
+										'https://media-exp1.licdn.com/dms/image/C5603AQHOBuS3zOEosw/profile-displayphoto-shrink_400_400/0?e=1606348800&v=beta&t=4PQsz0de3-sSHSx2wHrxxAWfUv3RRkuiVa_SkkpK_wU',
+								}}
+								size={50}
+							/>
+							<View style={{ marginLeft: 15, justifyContent: 'center' }}>
+								<Title style={styles.title}>Mauricio Fullana</Title>
+							</View>
+						</View>
+						<View style={styles.row}>
+							<View style={styles.section}>
+								<Caption style={styles.caption}>Last login date:</Caption>
+								<Caption style={styles.caption}>Oct 8 14:30</Caption>
+							</View>
+						</View>
+						<View style={styles.row}>
+							<View style={styles.section}>
+								<Caption style={styles.caption}>Last pass change:</Caption>
+								<Caption style={styles.caption}>Dec 5 22:15</Caption>
+							</View>
+						</View>
+					</View>
+				</View>
 				<Drawer.Section style={styles.drawerSection}>
 					<DrawerItem
-						label="Login"
+						label="Home"
 						onPress={() => {
-							props.navigation.navigate('Login');
+							props.navigation.navigate('Home');
 						}}
 						icon={({ color, size }) => (
 							<MaterialCommunityIcons
@@ -164,6 +194,19 @@ export function PublicDrawerContent(props: any) {
 					</TouchableRipple>
 				</Drawer.Section>
 			</DrawerContentScrollView>
+			<Drawer.Section style={styles.bottomDrawerSection}>
+				<DrawerItem
+					label="Sign Out"
+					onPress={signOut}
+					icon={({ color, size }) => (
+						<MaterialCommunityIcons
+							name="exit-to-app"
+							color={color}
+							size={size}
+						/>
+					)}
+				/>
+			</Drawer.Section>
 		</View>
 	);
 }
@@ -181,11 +224,12 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 	},
 	caption: {
-		fontSize: 14,
+		fontSize: 13,
 		lineHeight: 14,
+		marginRight: 10,
 	},
 	row: {
-		marginTop: 20,
+		marginTop: 5,
 		flexDirection: 'row',
 		alignItems: 'center',
 	},

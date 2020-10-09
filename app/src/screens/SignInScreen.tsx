@@ -11,10 +11,16 @@ import { AntDesign } from '@expo/vector-icons';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 
 import { Colors } from '../styles';
+import { AuthContext, IAuthContext } from '../context/AuthContext';
 
 const SignInScreen: FunctionComponent = () => {
+	const { signIn } = React.useContext<IAuthContext>(AuthContext);
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
+
+	const handleLogin = () => {
+		signIn({ userName, password });
+	};
 
 	return (
 		<ScrollView
@@ -51,7 +57,7 @@ const SignInScreen: FunctionComponent = () => {
 					<TouchableOpacity style={{ flex: 1 }} onPress={() => {}}>
 						<Text style={styles.formActionsText}>Forgot Password?</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.formLoginIcon} onPress={() => {}}>
+					<TouchableOpacity style={styles.formLoginIcon} onPress={handleLogin}>
 						<AntDesign name="arrowright" size={22} color="white" />
 					</TouchableOpacity>
 				</View>
