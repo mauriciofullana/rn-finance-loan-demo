@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
 	formLoginIcon: {
 		backgroundColor: Colors.main,
 		padding: 15,
-		borderRadius: 25,
+		borderRadius: 80,
 	},
 	footerContainer: {
 		flex: 1,
