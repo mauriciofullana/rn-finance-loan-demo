@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Button, SafeAreaView, StatusBar } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
@@ -7,7 +7,6 @@ import {
 	Avatar,
 	Title,
 	Caption,
-	Paragraph,
 	Drawer,
 	Text,
 	TouchableRipple,
@@ -17,14 +16,19 @@ import {
 import { Colors } from '../styles';
 
 import { AuthContext } from '../context/AuthContext';
+import { transparent } from '../styles/colors';
 
 export function PrivateDrawerContent(props: any) {
+	const [screenFocused, setScreenFocused] = useState<string>('Home');
 	const { signOut, toggleTheme } = React.useContext(AuthContext);
 	const paperTheme = useTheme();
 
+	const handleNavigationClick = (screen: string) => {
+		setScreenFocused(screen);
+		props.navigation.navigate(screen);
+	};
+
 	return (
-		<SafeAreaView style={[styles.drawerContent]}>
-		<StatusBar backgroundColor = '#000'  />
 		<View style={{ flex: 1 }}>
 			<DrawerContentScrollView {...props}>
 				<View style={styles.drawerContent}>
@@ -61,14 +65,16 @@ export function PrivateDrawerContent(props: any) {
 					<DrawerItem
 						label="Home"
 						onPress={() => {
-							props.navigation.navigate('Home');
+							handleNavigationClick('Home');
 						}}
-            			activeTintColor={Colors.main}
+						focused={screenFocused == 'Home'}
+						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
 							<MaterialCommunityIcons
 								name="home-outline"
-								color={focused ? Colors.darkGray : Colors.main}
+								color={focused ? Colors.main : Colors.darkGray}
 								size={size}
 								onPress={() => {}}
 							/>
@@ -77,14 +83,16 @@ export function PrivateDrawerContent(props: any) {
 					<DrawerItem
 						label="News"
 						onPress={() => {
-							props.navigation.navigate('News');
+							handleNavigationClick('News');
 						}}
+						focused={screenFocused == 'News'}
 						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
 							<MaterialCommunityIcons
 								name="message-text-outline"
-								color={focused ? Colors.darkGray : Colors.main}
+								color={focused ? Colors.main : Colors.darkGray}
 								size={size}
 							/>
 						)}
@@ -92,14 +100,16 @@ export function PrivateDrawerContent(props: any) {
 					<DrawerItem
 						label="Find us"
 						onPress={() => {
-							props.navigation.navigate('FindUs');
+							handleNavigationClick('FindUs');
 						}}
+						focused={screenFocused == 'FindUs'}
 						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
 							<MaterialCommunityIcons
 								name="map-marker-outline"
-								color={focused ? Colors.darkGray : Colors.main}
+								color={focused ? Colors.main : Colors.darkGray}
 								size={size}
 							/>
 						)}
@@ -107,14 +117,16 @@ export function PrivateDrawerContent(props: any) {
 					<DrawerItem
 						label="Benefits"
 						onPress={() => {
-							props.navigation.navigate('Benefits');
+							handleNavigationClick('Benefits');
 						}}
+						focused={screenFocused == 'Benefits'}
 						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
 							<MaterialCommunityIcons
 								name="bag-personal-outline"
-								color={focused ? Colors.darkGray : Colors.main}
+								color={focused ? Colors.main : Colors.darkGray}
 								size={size}
 							/>
 						)}
@@ -122,14 +134,16 @@ export function PrivateDrawerContent(props: any) {
 					<DrawerItem
 						label="Contact us"
 						onPress={() => {
-							props.navigation.navigate('ContactUs');
+							handleNavigationClick('ContactUs');
 						}}
+						focused={screenFocused == 'ContactUs'}
 						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
 							<MaterialCommunityIcons
 								name="phone-outline"
-								color={focused ? Colors.darkGray : Colors.main}
+								color={focused ? Colors.main : Colors.darkGray}
 								size={size}
 							/>
 						)}
@@ -137,28 +151,33 @@ export function PrivateDrawerContent(props: any) {
 					<DrawerItem
 						label="Links of interest"
 						onPress={() => {
-							props.navigation.navigate('LinksOfInterest');
+							handleNavigationClick('LinksOfInterest');
 						}}
+						focused={screenFocused == 'LinksOfInterest'}
 						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
-							<MaterialCommunityIcons name="link" 
-							color={focused ? Colors.darkGray : Colors.main} 
-							size={size} 
+							<MaterialCommunityIcons
+								name="link"
+								color={focused ? Colors.main : Colors.darkGray}
+								size={size}
 							/>
 						)}
 					/>
 					<DrawerItem
 						label="Terms and conditions"
 						onPress={() => {
-							props.navigation.navigate('TermsAndConditions');
+							handleNavigationClick('TermsAndConditions');
 						}}
+						focused={screenFocused == 'TermsAndConditions'}
 						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
 							<MaterialCommunityIcons
 								name="file-document-outline"
-								color={focused ? Colors.darkGray : Colors.main}
+								color={focused ? Colors.main : Colors.darkGray}
 								size={size}
 							/>
 						)}
@@ -166,14 +185,17 @@ export function PrivateDrawerContent(props: any) {
 					<DrawerItem
 						label="FAQ"
 						onPress={() => {
-							props.navigation.navigate('Faq');
+							handleNavigationClick('Faq');
 						}}
+						focused={screenFocused == 'Faq'}
 						activeTintColor={Colors.main}
 						inactiveTintColor={Colors.darkGray}
+						activeBackgroundColor={transparent}
 						icon={({ focused, size }) => (
-							<AntDesign name="question" 
-							color={focused ? Colors.darkGray : Colors.main}
-							size={size} 
+							<AntDesign
+								name="question"
+								color={focused ? Colors.main : Colors.darkGray}
+								size={size}
 							/>
 						)}
 					/>
@@ -225,14 +247,13 @@ export function PrivateDrawerContent(props: any) {
 					icon={({ focused, size }) => (
 						<MaterialCommunityIcons
 							name="exit-to-app"
-							color={focused ? Colors.darkGray : Colors.main}
+							color={focused ? Colors.main : Colors.darkGray}
 							size={size}
 						/>
 					)}
 				/>
 			</Drawer.Section>
 		</View>
-	</SafeAreaView>
 	);
 }
 
