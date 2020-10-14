@@ -2,7 +2,7 @@
 
 Default mode
 
-![](defaultloan.gif)
+![](loandef.gif)
 
 
 Dark mode
