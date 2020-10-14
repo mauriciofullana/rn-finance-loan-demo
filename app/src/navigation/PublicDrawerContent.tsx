@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
@@ -13,10 +13,11 @@ import {
 import { Colors } from '../styles';
 import { transparent } from '../styles/colors';
 
-// import { AuthContext } from '../components/context';
+import { AuthContext } from '../context/AuthContext';
 
 export function PublicDrawerContent(props: any) {
 	const [screenFocused, setScreenFocused] = useState<string>('Login');
+	const { toggleTheme } = useContext(AuthContext);
 	const paperTheme = useTheme();
 
 	const handleNavigationClick = (screen: string) => {
@@ -167,23 +168,15 @@ export function PublicDrawerContent(props: any) {
 					/>
 				</Drawer.Section>
 				<Drawer.Section title="Preferences">
-					<TouchableRipple
-						onPress={() => {
-							// toggleTheme();
-						}}
-					>
+					<TouchableRipple onPress={toggleTheme}>
 						<View style={styles.preference}>
 							<Text>Dark Theme</Text>
 							<View pointerEvents="none">
-								<Switch value={paperTheme.dark} />
+								<Switch value={paperTheme.dark} color={Colors.main} />
 							</View>
 						</View>
 					</TouchableRipple>
-					<TouchableRipple
-						onPress={() => {
-							// toggleTheme();
-						}}
-					>
+					<TouchableRipple onPress={() => {}}>
 						<View style={styles.preference}>
 							<Text>Language</Text>
 							<View pointerEvents="none" style={{ flex: 0.5 }}>

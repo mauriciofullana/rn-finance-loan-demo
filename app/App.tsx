@@ -14,6 +14,43 @@ import {
 
 import Navigator from './src/navigation/index';
 import { AuthContext } from './src/context/AuthContext';
+import { Colors } from './src/styles';
+
+declare global {
+	namespace ReactNativePaper {
+		interface ThemeColors {
+			slideUpPanelBackground: string;
+			slideUpPanelLeftTextColor: string;
+		}
+	}
+}
+
+const CustomDefaultTheme = {
+	...NavigationDefaultTheme,
+	...PaperDefaultTheme,
+	colors: {
+		...NavigationDefaultTheme.colors,
+		...PaperDefaultTheme.colors,
+		background: Colors.screenBackground,
+		text: Colors.lightWarmGray,
+		slideUpPanelBackground: Colors.slideUpPanelBackground,
+		slideUpPanelLeftTextColor: Colors.slideUpPanelLeftTextColor,
+	},
+	customColors: {},
+};
+
+const CustomDarkTheme = {
+	...NavigationDarkTheme,
+	...PaperDarkTheme,
+	colors: {
+		...NavigationDarkTheme.colors,
+		...PaperDarkTheme.colors,
+		background: Colors.darkModeScreenBackground,
+		text: Colors.darkModeBaseText,
+		slideUpPanelBackground: Colors.darkModeSlideUpPanelBackground,
+		slideUpPanelLeftTextColor: Colors.darkModeSlideUpPanelLeftTextColor,
+	},
+};
 
 export default function App() {
 	const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -22,28 +59,6 @@ export default function App() {
 		isLoading: true,
 		userName: null,
 		userToken: null,
-	};
-
-	const CustomDefaultTheme = {
-		...NavigationDefaultTheme,
-		...PaperDefaultTheme,
-		colors: {
-			...NavigationDefaultTheme.colors,
-			...PaperDefaultTheme.colors,
-			background: '#ffffff',
-			text: '#333333',
-		},
-	};
-
-	const CustomDarkTheme = {
-		...NavigationDarkTheme,
-		...PaperDarkTheme,
-		colors: {
-			...NavigationDarkTheme.colors,
-			...PaperDarkTheme.colors,
-			background: '#333333',
-			text: '#ffffff',
-		},
 	};
 
 	const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;

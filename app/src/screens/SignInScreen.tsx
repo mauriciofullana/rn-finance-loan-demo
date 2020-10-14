@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import {
 	StyleSheet,
-	Text,
 	View,
 	Image,
 	ScrollView,
@@ -9,14 +8,21 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
+import { useTheme } from '@react-navigation/native';
 
 import { Colors } from '../styles';
 import { AuthContext, IAuthContext } from '../context/AuthContext';
+import { Text } from 'react-native-paper';
 
 const SignInScreen: FunctionComponent = () => {
+	const { dark } = useTheme();
 	const { signIn } = React.useContext<IAuthContext>(AuthContext);
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
+
+	const imgLogo = dark
+		? require('../../assets/logodark.png')
+		: require('../../assets/logo.png');
 
 	const handleLogin = () => {
 		signIn({ userName, password });
@@ -28,10 +34,7 @@ const SignInScreen: FunctionComponent = () => {
 			contentContainerStyle={{ flexGrow: 1 }}
 		>
 			<View style={styles.logoImgContainer}>
-				<Image
-					style={styles.logoImg}
-					source={require('../../assets/bklyLogo.png')}
-				/>
+				<Image style={styles.logoImg} source={imgLogo} />
 			</View>
 			<View style={styles.formContainer}>
 				<Text style={styles.formTitle}>Sign In</Text>
@@ -76,7 +79,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		paddingHorizontal: 20,
-		backgroundColor: '#fff',
 	},
 	logoImgContainer: {
 		flex: 0.5,
@@ -94,7 +96,6 @@ const styles = StyleSheet.create({
 	},
 	formTitle: {
 		fontSize: 28,
-		color: Colors.lightWarmGray,
 		marginBottom: 40,
 	},
 	formActions: {
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	formActionsText: {
-		color: Colors.baseText,
+		//color: Colors.baseText,
 	},
 	formLoginIcon: {
 		backgroundColor: Colors.main,
@@ -121,7 +122,6 @@ const styles = StyleSheet.create({
 		padding: 5,
 	},
 	footerText: {
-		color: Colors.baseText,
 		marginRight: 5,
 	},
 	footerActionText: {

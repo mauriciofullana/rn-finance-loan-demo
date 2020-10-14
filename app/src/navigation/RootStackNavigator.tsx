@@ -20,6 +20,7 @@ const RootStackScreen = ({ navigation }: any) => (
 					elevation: Platform.OS === 'ios' ? 0 : 0,
 					shadowOpacity: Platform.OS === 'ios' ? 0 : 0,
 					borderBottomWidth: 0,
+					backgroundColor: transparent,
 				},
 				headerTitle: () => null,
 				headerLeft: () => {

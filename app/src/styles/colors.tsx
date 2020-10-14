@@ -19,9 +19,16 @@ export const mainOpacity = 'rgba(244, 53, 30, 0.3)';
 export const mainDisabled = 'rgba(244, 53, 30, 0.5)';
 export const secondary = '#f4351e';
 export const header = '#030303';
-export const screenBackground = '#3F4044';
+export const screenBackground = white;
+export const darkModeScreenBackground = '#333333';
+export const slideUpPanelBackground = '#EBEFF2';
+export const darkModeSlideUpPanelBackground = lightWarmGray;
+export const slideUpPanelLeftTextColor = lightWarmGray;
+export const darkModeSlideUpPanelLeftTextColor = lightGray;
 
 export const baseText = lightWarmGray;
+export const darkModeBaseText = offWhite;
+
 export const darkText = darkestGray;
 export const loginText = lightWarmGray;
 export const sectionBackground = lightWarmGray;

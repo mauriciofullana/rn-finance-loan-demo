@@ -14,7 +14,7 @@ import ContactUsStackNavigator from './ContactUsStackNavigator';
 import LinksOfInterestStackNavigator from './LinksOfInterestStackNavigator';
 import TermsAndConditionsStackNavigator from './TermsAndConditionsStackNavigator';
 import FaqStackNavigator from './FaqStackNavigator';
-
+import MainTabNavigator from './MainTabNavigator';
 
 const PublicDrawer = createDrawerNavigator();
 const PrivateDrawer = createDrawerNavigator();
@@ -30,28 +30,63 @@ const Navigator: FunctionComponent<NavigatorProps> = ({ theme }) => {
 		<NavigationContainer theme={theme}>
 			{userToken != null ? (
 				<PrivateDrawer.Navigator
-				drawerContentOptions={{ activeBackgroundColor: '#5cbbff', activeTintColor: '#ffffff' }} drawerContent={(props) => <PrivateDrawerContent {...props} />}
+					drawerContentOptions={{
+						activeBackgroundColor: '#5cbbff',
+						activeTintColor: '#ffffff',
+					}}
+					drawerContent={(props) => <PrivateDrawerContent {...props} />}
 				>
-					<PrivateDrawer.Screen name="Home" component={HomeStackNavigator} />
+					<PrivateDrawer.Screen name="Homeds" component={MainTabNavigator} />
 					<PrivateDrawer.Screen name="News" component={NewsStackNavigator} />
-					<PrivateDrawer.Screen name="FindUs" component={FindUsStackNavigator} />
-					<PrivateDrawer.Screen name="Benefits" component={BenefitsStackNavigator} />
-					<PrivateDrawer.Screen name="ContactUs" component={ContactUsStackNavigator} />
-					<PrivateDrawer.Screen name="LinksOfInterest" component={LinksOfInterestStackNavigator} />
-					<PrivateDrawer.Screen name="TermsAndConditions" component={TermsAndConditionsStackNavigator} />
+					<PrivateDrawer.Screen
+						name="FindUs"
+						component={FindUsStackNavigator}
+					/>
+					<PrivateDrawer.Screen
+						name="Benefits"
+						component={BenefitsStackNavigator}
+					/>
+					<PrivateDrawer.Screen
+						name="ContactUs"
+						component={ContactUsStackNavigator}
+					/>
+					<PrivateDrawer.Screen
+						name="LinksOfInterest"
+						component={LinksOfInterestStackNavigator}
+					/>
+					<PrivateDrawer.Screen
+						name="TermsAndConditions"
+						component={TermsAndConditionsStackNavigator}
+					/>
 					<PrivateDrawer.Screen name="Faq" component={FaqStackNavigator} />
 				</PrivateDrawer.Navigator>
 			) : (
 				<PublicDrawer.Navigator
-				drawerContentOptions={{ activeBackgroundColor: '#5cbbff', activeTintColor: '#ffffff' }}	drawerContent={(props) => <PublicDrawerContent {...props} />}
+					drawerContentOptions={{
+						activeBackgroundColor: '#5cbbff',
+						activeTintColor: '#ffffff',
+					}}
+					drawerContent={(props) => <PublicDrawerContent {...props} />}
 				>
 					<PublicDrawer.Screen name="Login" component={RootStackNavigator} />
 					<PublicDrawer.Screen name="News" component={NewsStackNavigator} />
 					<PublicDrawer.Screen name="FindUs" component={FindUsStackNavigator} />
-					<PublicDrawer.Screen name="Benefits" component={BenefitsStackNavigator} />
-					<PublicDrawer.Screen name="ContactUs" component={ContactUsStackNavigator} />
-					<PublicDrawer.Screen name="LinksOfInterest" component={LinksOfInterestStackNavigator} />
-					<PublicDrawer.Screen name="TermsAndConditions" component={TermsAndConditionsStackNavigator} />
+					<PublicDrawer.Screen
+						name="Benefits"
+						component={BenefitsStackNavigator}
+					/>
+					<PublicDrawer.Screen
+						name="ContactUs"
+						component={ContactUsStackNavigator}
+					/>
+					<PublicDrawer.Screen
+						name="LinksOfInterest"
+						component={LinksOfInterestStackNavigator}
+					/>
+					<PublicDrawer.Screen
+						name="TermsAndConditions"
+						component={TermsAndConditionsStackNavigator}
+					/>
 					<PublicDrawer.Screen name="Faq" component={FaqStackNavigator} />
 				</PublicDrawer.Navigator>
 			)}

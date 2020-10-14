@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from '../screens/HomeScreen';
 import { Colors } from '../styles';
+import { transparent } from '../styles/colors';
 
 const HomeStack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const HomeStackNavigator = ({ navigation }: any) => (
 					elevation: Platform.OS === 'ios' ? 0 : 0,
 					shadowOpacity: Platform.OS === 'ios' ? 0 : 0,
 					borderBottomWidth: 0,
+					backgroundColor: transparent,
 				},
 				headerTitle: () => null,
 				headerLeft: () => {

@@ -8,8 +8,8 @@ import {
 	Title,
 	Caption,
 	Drawer,
-	Text,
 	TouchableRipple,
+	Text,
 	Switch,
 	useTheme,
 } from 'react-native-paper';
@@ -23,9 +23,14 @@ export function PrivateDrawerContent(props: any) {
 	const { signOut, toggleTheme } = React.useContext(AuthContext);
 	const paperTheme = useTheme();
 
+	const handleSignOut = () => {
+		props.navigation.closeDrawer();
+		signOut();
+	};
+
 	const handleNavigationClick = (screen: string) => {
-		setScreenFocused(screen);
 		props.navigation.navigate(screen);
+		setScreenFocused(screen);
 	};
 
 	return (
@@ -201,15 +206,11 @@ export function PrivateDrawerContent(props: any) {
 					/>
 				</Drawer.Section>
 				<Drawer.Section title="Preferences">
-					<TouchableRipple
-						onPress={() => {
-							// toggleTheme();
-						}}
-					>
+					<TouchableRipple onPress={toggleTheme}>
 						<View style={styles.preference}>
 							<Text>Dark Theme</Text>
 							<View pointerEvents="none">
-								<Switch value={paperTheme.dark} />
+								<Switch value={paperTheme.dark} color={Colors.main} />
 							</View>
 						</View>
 					</TouchableRipple>
@@ -240,10 +241,17 @@ export function PrivateDrawerContent(props: any) {
 					</TouchableRipple>
 				</Drawer.Section>
 			</DrawerContentScrollView>
-			<Drawer.Section style={styles.bottomDrawerSection}>
+			<Drawer.Section
+				style={[
+					styles.bottomDrawerSection,
+					paperTheme.dark ? styles.bottomDrawerSectionDark : null,
+				]}
+			>
 				<DrawerItem
 					label="Sign Out"
-					onPress={signOut}
+					onPress={() => {
+						handleSignOut();
+					}}
 					icon={({ focused, size }) => (
 						<MaterialCommunityIcons
 							name="exit-to-app"
@@ -293,8 +301,11 @@ const styles = StyleSheet.create({
 	},
 	bottomDrawerSection: {
 		marginBottom: 15,
-		borderTopColor: '#f4f4f4',
+		borderTopColor: Colors.lightGray,
 		borderTopWidth: 1,
+	},
+	bottomDrawerSectionDark: {
+		borderTopColor: Colors.darkGray,
 	},
 	preference: {
 		flexDirection: 'row',
