@@ -5,12 +5,15 @@ import * as Animatable from 'react-native-animatable';
 import { Text, useTheme } from 'react-native-paper';
 import { Colors } from '../styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import MainCarousel from '../components/MainCarousel';
+import { ILoan, loans } from '../models/loans';
 
 export default function HomeScreen() {
 	const { dark, colors } = useTheme();
 	return (
 		<View style={styles.container}>
-			<CarouselItem />
+			{/* <CarouselItem /> */}
+			<MainCarousel items={loans} selectedItemChange={() => {}} />
 			<Animatable.View
 				style={[
 					styles.detail,

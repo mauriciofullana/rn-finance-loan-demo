@@ -1,10 +1,10 @@
 {
-  "devToolsPort": 19002,
+  "devToolsPort": 19003,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 1155,
+  "packagerPort": 19004,
+  "packagerPid": 7405,
   "expoServerNgrokUrl": "https://ef-ijt.mfullana4.app.exp.direct",
   "packagerNgrokUrl": "https://packager.ef-ijt.mfullana4.app.exp.direct",
-  "ngrokPid": 2288,
+  "ngrokPid": 6884,
   "webpackServerPort": null
 }

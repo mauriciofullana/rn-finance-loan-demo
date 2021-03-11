@@ -51,7 +51,7 @@ export default function CarouselItem() {
 					}}
 				>
 					<VictoryPie
-						animate={{ duration: 15000, easing: 'exp' }}
+						animate={{ easing: 'exp' }}
 						data={graphicData}
 						width={235}
 						height={235}
@@ -60,7 +60,7 @@ export default function CarouselItem() {
 					/>
 					<View style={{ position: 'absolute', alignItems: 'center' }}>
 						<Text style={{ fontSize: 14 }}>56.600 USD</Text>
-						<Text style={{ fontSize: 14 }}>10 Installments</Text>
+						<Text style={{ fontSize: 14 }}>9 Installments</Text>
 					</View>
 				</View>
 				<View
@@ -89,7 +89,7 @@ export default function CarouselItem() {
 							style={{
 								height: 15,
 								width: 15,
-								backgroundColor: '#BA2427',
+								backgroundColor: '#F7464A',
 								marginRight: 10,
 							}}
 						/>
@@ -109,7 +109,7 @@ export default function CarouselItem() {
 						/>
 						<View style={{ justifyContent: 'center', flexDirection: 'row' }}>
 							<Text>3 </Text>
-							<Text style={{ fontSize: 13, fontWeight: 'bold' }}>Overdue</Text>
+							<Text style={{ fontSize: 13, fontWeight: 'bold' }}>Expired</Text>
 						</View>
 					</View>
 				</View>
